@@ -246,7 +246,7 @@ class RegexFSM:
 
         if not regex_expr:
             self.start_node.next_states.append(TerminationState())
-            self.memo: dict[tuple[int, str], bool] = {}
+
             return
 
         idx = 0
@@ -391,7 +391,8 @@ class RegexFSM:
                         states_to_visit.append(next_s)
         return closure
 
-    def check_string_iterative(self, text_to_check: str) -> bool:
+
+    def check_string(self, text_to_check: str) -> bool:
         """
         Check if a string matches the regex using an iterative approach.
 
@@ -424,18 +425,6 @@ class RegexFSM:
             if isinstance(final_s, TerminationState):
                 return True
         return False
-
-    def check_string(self, text_to_check: str) -> bool:
-        """
-        Check if a string matches the regex pattern.
-
-        Args:
-            text_to_check: String to check against the regex
-
-        Returns:
-            True if the string matches, False otherwise
-        """
-        return self.check_string_iterative(text_to_check)
 
 
 if __name__ == "__main__":
